@@ -39,9 +39,10 @@ class GameView:
 		self.screen.fill(WHITE)
 		self.draw_text(BLACK, str(self.logic.score), [0, 0])
 		self.draw_pixel(LGRAY, self.logic.player_pos[X], self.logic.player_pos[Y] + 2)
-		for row in range(len(self.logic.obstacles)):
-			for obstacle in self.logic.obstacles[row]:
-				self.draw_line(BLACK, [obstacle, row + 2], self.logic.obstacle_size, "h")
+		for y in range(len(self.logic.obstacles)):
+			for x in range(len(self.logic.obstacles[y])):
+				if(self.logic.obstacles[y][x] == 1): # obstacles are saved in [y, x] for easier access
+					self.draw_pixel(BLACK, x, y + 2)
 		pygame.display.flip()
 		
 	'''

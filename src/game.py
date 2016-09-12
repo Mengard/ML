@@ -7,10 +7,11 @@ from view import *
 def main():
 	pygame.init()
 	# create the game logic and associate a view to it
-	gl = GameLogic(6, 10, 2)
+	gl = GameLogic(6, 7, 2)
 	gv = GameView(gl)
 	clock = pygame.time.Clock()
 	done = False
+	turn = 0
 	while not done:
 		clock.tick(5)
 		for event in pygame.event.get(): # User did something
