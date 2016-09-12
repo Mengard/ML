@@ -5,7 +5,7 @@ X = 0
 Y = 1
 
 # graphical size of one logical pixel
-PX_SIZE = 10
+PX_SIZE = 20
 
 # color
 BLACK = (0x00, 0x00, 0x00)

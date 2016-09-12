@@ -19,6 +19,7 @@ class GameLogic:
 	'''
 	def __init__(self, nb_lines, width, obstacle_size):
 		random.seed(1)
+		self.input = None
 		self.obstacle_size = obstacle_size
 		self.nb_lines = nb_lines
 		self.width = width
@@ -27,12 +28,23 @@ class GameLogic:
 		self.pygame = pygame.init()
 		self.player_pos = [self.l_size[X]/2, self.l_size[Y]-1]
 		self.obstacles = [[] for i in range(nb_lines)]
-		for _ in range(width):
+		for _ in range(width): # init the game board to not be empty when game start
 			self.next_step()
 	
+	'''
+	Execute one logical step in the game
+	'''
 	def next_step(self):
+		if self.input == pygame.K_UP:
+			self.player_pos[Y] -= 1
+		if self.input == pygame.K_DOWN:
+			self.player_pos[Y] += 1
+		if self.input == pygame.K_LEFT:
+			self.player_pos[X] -= 1
+		if self.input == pygame.K_RIGHT:
+			self.player_pos[X] += 1
+		self.input = None # reset key 
 		new_obstacle = random.randint(0, self.nb_lines - 1)
-		print new_obstacle
 		self.obstacles[new_obstacle] += [self.width]
 		new_obstacles = [[] for i in range(self.nb_lines)]
 		for row in range(len(self.obstacles)):
@@ -40,4 +52,10 @@ class GameLogic:
 				if obstacle > -self.obstacle_size:
 					new_obstacles[row] += [obstacle - 1]
 		self.obstacles = new_obstacles
-		print self.obstacles
+
+	'''
+	Handle key input event
+		input : the key that was pressed (int value)
+	'''
+	def add_input(self, input):
+		self.input = input
