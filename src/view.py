@@ -5,7 +5,7 @@ X = 0
 Y = 1
 
 # graphical size of one logical pixel
-PX_SIZE = 20
+PX_SIZE = 5
 
 # color
 BLACK = (0x00, 0x00, 0x00)
@@ -27,7 +27,7 @@ class GameView:
 		pygame.init()
 		pygame.display.set_caption("Cross the road")
 		self.font = pygame.font.SysFont("monospace", PX_SIZE * 2, bold=True)
-		self.g_size = (np.array(self.logic.l_size) + [0, 2]) * PX_SIZE # 2 more row for the score
+		self.g_size = (np.array(self.logic.l_size) + [0, 2]) * PX_SIZE * 10 # 2 more row for the score
 		self.screen = self.screen = pygame.display.set_mode(self.g_size)
 
 	'''
