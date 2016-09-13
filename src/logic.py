@@ -67,8 +67,9 @@ class GameLogic:
 	'''
 	def obstacles_move(self):
 		# handle new obstacle
-		new_obstacle = random.randint(0, self.nb_lines - 1)
-		self.obstacles[new_obstacle][self.width:self.width + self.obstacle_size] = 1 # fill the line from the end to the offscreen end (obstacle size) 
+		if(random.random() > 0.8):
+			new_obstacle = random.randint(0, self.nb_lines - 1)
+			self.obstacles[new_obstacle][self.width:self.width + self.obstacle_size] = 1 # fill the line from the end to the offscreen end (obstacle size) 
 		# handle obstacles roll
 		self.obstacles[:,0] = 0 # remove first column, the one that  will be rolled out
 		self.obstacles = np.roll(self.obstacles, -1, axis=1) # shift left, by the column
@@ -84,6 +85,8 @@ class GameLogic:
 		# handle lose, no penalty beside going back
 		if self.player_pos[Y] != self.nb_lines and self.obstacles[self.player_pos[Y]][self.player_pos[X]] == 1: # does not check safe zone
 			self.player_pos = [self.l_size[X]/2, self.l_size[Y]-1]
+			self.score -= 1 #testing something
+			print "hit !"
 			
 	
 	def get_state(self):

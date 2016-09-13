@@ -19,8 +19,8 @@ def main():
 	old_state = gl.get_state()
 	old_action = 0
 	while not done:
-		if(turn % 10000 == 0):
-			print ".",
+		#clock.tick(100)
+		if(turn % 1000 == 0):
 			scores += [gl.score]
 		for event in pygame.event.get(): # User did something
 			if event.type == pygame.QUIT: # If user clicked close
@@ -30,13 +30,14 @@ def main():
 					plt.plot(range(len(scores)), scores)
 					plt.show()
 				gl.add_input(event.key)
+		old_score = gl.score # to know when we scored
 		# operate the solver action
 		gl.add_input(old_action)
 		gl.next_step()
 		# learn from it
 		new_state = gl.get_state()
 		new_action = solver.choose_action(new_state)
-		reward = 1 if gl.player_pos[Y] == -1 else 0
+		reward = gl.score - old_score
 		solver.learn(old_state, old_action, new_state, new_action, reward)
 		old_state = new_state
 		old_action = new_action

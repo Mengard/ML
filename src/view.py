@@ -5,7 +5,7 @@ X = 0
 Y = 1
 
 # graphical size of one logical pixel
-PX_SIZE = 5
+PX_SIZE = 50
 
 # color
 BLACK = (0x00, 0x00, 0x00)
@@ -23,11 +23,10 @@ class GameView:
 
 	def __init__(self, logic):
 		self.logic = logic
-		print logic.l_size
 		pygame.init()
 		pygame.display.set_caption("Cross the road")
 		self.font = pygame.font.SysFont("monospace", PX_SIZE * 2, bold=True)
-		self.g_size = (np.array(self.logic.l_size) + [0, 2]) * PX_SIZE * 10 # 2 more row for the score
+		self.g_size = (np.array(self.logic.l_size) + [0, 2]) * PX_SIZE # 2 more row for the score
 		self.screen = self.screen = pygame.display.set_mode(self.g_size)
 
 	'''
@@ -35,6 +34,7 @@ class GameView:
 	this is the method that will be called by the game engine to refresh the view
 	'''
 	def draw(self):
+		'''
 		l_size = self.logic.l_size
 		self.screen.fill(WHITE)
 		self.draw_text(BLACK, str(self.logic.score), [0, 0])
@@ -44,7 +44,7 @@ class GameView:
 				if(self.logic.obstacles[y][x] == 1): # obstacles are saved in [y, x] for easier access
 					self.draw_pixel(BLACK, x, y + 2)
 		pygame.display.flip()
-		
+		'''
 	'''
 	paint a single logical pixel
 		colour : the colour of the pixel
