@@ -86,7 +86,6 @@ class GameLogic:
 		if self.player_pos[Y] != self.nb_lines and self.obstacles[self.player_pos[Y]][self.player_pos[X]] == 1: # does not check safe zone
 			self.player_pos = [self.l_size[X]/2, self.l_size[Y]-1]
 			self.score -= 1 #testing something
-			print "hit !"
 			
 	
 	def get_state(self):

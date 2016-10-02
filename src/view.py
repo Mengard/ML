@@ -44,7 +44,7 @@ class GameView:
 				if(self.logic.obstacles[y][x] == 1): # obstacles are saved in [y, x] for easier access
 					self.draw_pixel(BLACK, x, y + 2)
 		pygame.display.flip()
-		'''
+		#'''
 	'''
 	paint a single logical pixel
 		colour : the colour of the pixel
